@@ -9,3 +9,4 @@
 user1 = User.create(email: "danny@test.com", password: "abc123", password_confirmation: "abc123")
 
 item1 = Item.create(title: "Monopoly", description: "A great board game for all", user: user1)
+item2 = Item.create(title: "Yugioh", description: "All the cards", user: user1)
