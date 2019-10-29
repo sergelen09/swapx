@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ItemIndexTile from './ItemIndexTile'
+import WelcomeTile from './WelcomeTile'
 
 const ItemsIndexContainer = props => {
   const [items, setItems] = useState([])
@@ -35,11 +36,16 @@ const ItemsIndexContainer = props => {
       />
     )
   })
-  // nes-container is-rounded
+  
   return (
-    <div className="container-fluid padding item-tile">
-      <div className="row justify-content-center">
-        {itemTiles}
+    <div>
+      <div>
+        <WelcomeTile />
+      </div>
+      <div className="container-fluid padding item-tile">
+        <div className="row justify-content-center">
+          {itemTiles}
+        </div>
       </div>
     </div>
   )
