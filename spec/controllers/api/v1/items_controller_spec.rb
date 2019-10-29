@@ -35,4 +35,34 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       expect(returned_json["items"][1]["description"]).to eq "All the cards"
     end
   end
+
+  describe "POST#create" do
+    # it "returns a 401 authentication error when not logged in" do
+    #   post_json = {
+    #     item: {
+    #       title: "Monopoly",
+    #       description: "What a great board game"
+    #     }
+    #   }
+    #
+    #   post :create, params: post_json, format: :json
+    #   returned_json = JSON.parse(response.body)
+    #   expect(response.status).to eq 401
+    # end
+
+    it "creates a new item" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      post_json = {
+        item: {
+          title: "Monopoly",
+          description: "What a great board game"
+        }
+      }
+
+      prev_count = Item.count
+      post :create, params: post_json, format: :json
+      expect(Item.count).to eq(prev_count + 1)
+    end
+  end
 end
