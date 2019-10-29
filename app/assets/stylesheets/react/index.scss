@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
 .item-index {
   width: 20rem;
 }
@@ -5,3 +7,76 @@
 .item-tile {
   padding-left: 1rem;
 }
+
+.bg-image {
+  background-image: url("https://i.gyazo.com/f135dd529f4fd5dd256b49295faba2b6.jpg");
+}
+
+.logo-text {
+  font-family: 'Permanent Marker', cursive;
+  padding-left: 1rem;
+  font-size: 4rem;
+}
+
+.jumbotron {
+  background-image: url("https://i.gyazo.com/15a970ec597a21f224623dd9a22c567e.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  min-height: 575px;
+  font-weight: bold;
+}
+
+.sign-up-btn {
+  color: #FFFFFF;
+  background-color: #EF233C;
+}
+
+.sign-btns {
+  font-family: #FFFFFF;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.mr-auto {
+  margin: auto;
+}
+
+// .navbar {
+//   background-image: url("https://i.gyazo.com/59d2b5e602e5597e2e5c011025c6e522.png");
+//   background-size: 100%;
+//   background-repeat: no-repeat;
+// }
+
+// https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80
+// .jumbotron .container {
+//   position:relative;
+//   top: 50px;
+// }
+
+
+
+// .content {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+// }
+
+// line-height: 1.15;
+// font-style: normal;
+// font-weight: 400;
+// color: #57646c;
+// -webkit-font-smoothing: antialiased;
+// font-size: 16.2px;
+// box-sizing: inherit;
+// font-family: Montserrat,Helvetica,sans-serif;
+// width: 100%;
+// max-width: 1340px;
+// margin: 0 auto;
+// display: flex;
+// flex-direction: row;
+// flex-wrap: nowrap;
+// justify-content: space-between;
+// align-items: center;
+// height: 86px;
