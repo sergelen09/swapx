@@ -2,8 +2,9 @@
 
 [![Codeship Status for DannyNguye/yumyea](https://app.codeship.com/projects/c44d1b50-d682-0137-478f-0aef507db97c/status?branch=master)](https://app.codeship.com/projects/370598)
 
-Application Name: YumYea
+Application Name: The Xchange
 
-Description: A restaurant review page that allows users to flag restaurants they don't want to see. A gamification aspect that increases the weight of user review ratings.
+Description: A item exchanging app where users can exchange board games, video games, books, and collectible cards with each other.
 
 Authors: Danny Nguyen
+
