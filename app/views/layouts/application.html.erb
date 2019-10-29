@@ -2,26 +2,38 @@
 <html>
 <head>
   <title>Nerd Exchange</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <nav class="top-bar">
-    <h1><a href="/">Nerd Exchange</a></h1>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
+  <nav class="navbar navbar-light bg-dark sticky-top">
+    <div class="container-fluid">
+      <h1><a href="/">Nerd Exchange</a></h1>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <%- if current_user -%>
+          <li class="nav-item active">
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "nav-link" %>
+          </li>
+          <%- else -%>
+          <li class="nav-item active">
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign In', new_user_session_path %>
+          </li>
+          <%- end -%>
+        </ul>
+      </div>
+    </div>
   </nav>
+
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
