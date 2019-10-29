@@ -35,10 +35,12 @@ const ItemsIndexContainer = props => {
       />
     )
   })
-
+  // nes-container is-rounded
   return (
-    <div>
-      {itemTiles}
+    <div className="container-fluid padding item-tile">
+      <div className="row justify-content-center">
+        {itemTiles}
+      </div>
     </div>
   )
 }
