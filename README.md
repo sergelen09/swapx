@@ -1,6 +1,6 @@
 # README
 
-[![Codeship Status for DannyNguye/yumyea](https://app.codeship.com/projects/c44d1b50-d682-0137-478f-0aef507db97c/status?branch=master)](https://app.codeship.com/projects/370598)
+[![Codeship Status for DannyNguye/radar](https://app.codeship.com/projects/c44d1b50-d682-0137-478f-0aef507db97c/status?branch=master)](https://app.codeship.com/projects/370598)
 
 Application Name: The Xchange
 
