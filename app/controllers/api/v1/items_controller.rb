@@ -10,7 +10,7 @@ class Api::V1::ItemsController < ApiController
   def create
   item = Item.new(item_params)
   item.user = current_user
-
+  
   if item.save
     render json: item
   else
