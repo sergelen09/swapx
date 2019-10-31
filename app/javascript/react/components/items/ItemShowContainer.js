@@ -4,11 +4,13 @@ import ItemShowPage from './ItemShowPage'
 const ItemShowContainer = props => {
   const [item, setItem] = useState({
     title: "",
-    description: ""
+    description: "",
+    location: ""
   })
-  const [offer, setOffer] = useState({
+  const [trade, setTrade] = useState({
     title: "",
-    description: ""
+    description: "",
+    location: ""
   })
 
   let itemId = props.match.params.id
@@ -27,7 +29,15 @@ const ItemShowContainer = props => {
     .then(response => response.json())
     .then(body => {
       setItem(body.item)
-      setOffer(body.item.offered_item)
+      if (body.item.traded_item_info) {
+      setTrade(body.item.traded_item_info)
+    } else {
+      setTrade({
+        title: "No Offer Yet",
+        description: "",
+        location: ""
+      })
+    }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -38,9 +48,8 @@ const ItemShowContainer = props => {
         id={item.id}
         title={item.title}
         description={item.description}
-        offerId={offer.id}
-        offerTitle={offer.title}
-        offerDescription={offer.description}
+        location={item.location}
+        trade={trade}
       />
     </div>
   )

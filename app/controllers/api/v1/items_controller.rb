@@ -17,6 +17,8 @@ class Api::V1::ItemsController < ApiController
   item.user = current_user
 
   if item.save
+    item.geocode
+    item.save
     render json: item
   else
     render json: {
@@ -29,6 +31,6 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:title, :description)
+    params.require(:item).permit(:title, :description, :location, :photo)
   end
 end
