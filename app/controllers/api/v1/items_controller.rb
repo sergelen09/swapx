@@ -7,6 +7,11 @@ class Api::V1::ItemsController < ApiController
     }
   end
 
+  def show
+    item = Item.find(params[:id])
+    render json: item, serializer: ItemSerializer, scope: {current_user: current_user}
+  end
+
   def create
   item = Item.new(item_params)
   item.user = current_user
