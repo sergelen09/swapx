@@ -36,9 +36,9 @@ const ItemsIndexContainer = props => {
       />
     )
   })
-  
+
   return (
-    <div>
+    <div className='page-container'>
       <div>
         <WelcomeTile />
       </div>

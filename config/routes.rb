@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 
   get '/items', to: "static_pages#index"
   get '/items/new', to: "static_pages#new"
+  get '/items/:id', to: "static_pages#index"
 
   namespace :api do
     namespace :v1 do
-      resources :items, only: [:index, :create]
+      resources :items, only: [:index, :create, :show]
     end
   end
 end
