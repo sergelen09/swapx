@@ -6,6 +6,10 @@ const ItemShowContainer = props => {
     title: "",
     description: ""
   })
+  const [offer, setOffer] = useState({
+    title: "",
+    description: ""
+  })
 
   let itemId = props.match.params.id
 
@@ -23,7 +27,7 @@ const ItemShowContainer = props => {
     .then(response => response.json())
     .then(body => {
       setItem(body.item)
-      // setUser(body.item.current_user)
+      setOffer(body.item.offered_item)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -34,6 +38,9 @@ const ItemShowContainer = props => {
         id={item.id}
         title={item.title}
         description={item.description}
+        offerId={offer.id}
+        offerTitle={offer.title}
+        offerDescription={offer.description}
       />
     </div>
   )

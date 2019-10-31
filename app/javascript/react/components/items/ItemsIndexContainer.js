@@ -34,7 +34,7 @@ const ItemsIndexContainer = props => {
         title={item.title}
         description={item.description}
       />
-    )
+  )
   })
 
   return (
