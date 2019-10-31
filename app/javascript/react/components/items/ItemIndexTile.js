@@ -2,7 +2,7 @@ import React from 'react'
 
 const ItemIndexTile = props => {
   return (
-    <div className="col-md-auto align-items-center">
+    <div className="col-md-auto">
       <div className="item-index">
         <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTX6boDPytGugCm0cmKzvCHGeLsqzLeaP6BhxRbXt0ZcNKCgHnr8Q&usqp=CAc" className="card-img-top"/>
         <div className="card-body">

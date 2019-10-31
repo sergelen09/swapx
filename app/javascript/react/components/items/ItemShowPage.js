@@ -1,32 +1,43 @@
 import React from 'react'
 
 const ItemShowPage = props => {
+  let itemOnePic
+  let itemTwoPic
+
+  if (props.photo) {
+    itemOnePic = <img src="{props.photo}" className="card-img"/>
+  }
+
+  if (props.trade.photo) {
+    itemTwoPic = <img src="{props.trade.photo}" className="card-img"/>
+  }
+
   return(
     <div>
       <div className="col-md-4 offset-md-2 item-show">
-        <h1 className="item-title-show">Item:</h1>
+        <h2 className="item-title-show">Item:</h2>
         <div className="item-index">
-          <img src="" className="card-img"/>
+          {itemOnePic}
           <div className="card-body">
             <h4 className="card-title">
               {props.title}
             </h4>
-            <p className="card-text">
-              {props.description}
+            <p>
+              {props.location}
             </p>
           </div>
         </div>
       </div>
       <div className="col-md-4 offset-md-2">
-        <h1 className="item-title-show">Offer:</h1>
+        <h2 className="item-title-show">Offer:</h2>
         <div className="item-index">
-          <img src="" className="card-img"/>
+          {itemTwoPic}
           <div className="card-body">
             <h4 className="card-title">
-              {props.offerTitle}
+              {props.trade.title}
             </h4>
             <p className="card-text">
-              {props.offerDescription}
+              {props.trade.location}
             </p>
           </div>
         </div>

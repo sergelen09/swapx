@@ -6,7 +6,9 @@ import ErrorList from "../ErrorList"
 const ItemForm = props => {
   const [itemFields, setItemFields] = useState({
     title: "",
-    description: ""
+    description: "",
+    location: "",
+    photo: ""
   })
 
   const [errors, setErrors] = useState({})
@@ -71,7 +73,9 @@ const ItemForm = props => {
 
     setItemFields({
       title: "",
-      description: ""
+      description: "",
+      location: "",
+      photo: ""
     })
     }
   }
@@ -81,7 +85,7 @@ const ItemForm = props => {
   // }
 
   return(
-    <div className="">
+    <div className="item-form">
       <h2>Add a New Item</h2>
       <form onSubmit={handleSubmitHandler}>
         <ErrorList
@@ -101,6 +105,24 @@ const ItemForm = props => {
             type="text"
             id="description"
             value={itemFields.description}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label htmlFor="location">Location:
+          <input
+            type="text"
+            id="location"
+            value={itemFields.location}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label htmlFor="photo">Photo:
+          <input
+            type="text"
+            id="photo"
+            value={itemFields.photo}
             onChange={handleInputChange}
           />
         </label>
