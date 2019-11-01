@@ -4,132 +4,69 @@ import _ from "lodash"
 import ErrorList from "../ErrorList"
 
 const ItemForm = props => {
-  const [itemFields, setItemFields] = useState({
-    title: "",
-    description: "",
-    location: "",
-    photo: ""
-  })
-
-  const [errors, setErrors] = useState({})
-  const [redirectNumber, setRedirectNumber] = useState(null)
-
-  const handleInputChange = event => {
-    setItemFields({
-      ...itemFields,
-      [event.currentTarget.id]: event.currentTarget.value
-    })
-  }
-
-  const validForSubmission = () => {
-    let submitErrors = {}
-
-    const requiredFields = ["title", "description"]
-
-    requiredFields.forEach(field => {
-      if(itemFields[field].trim() === "") {
-        submitErrors = {
-          ...submitErrors,
-          [field]: "can't be blank"
-        }
-      }
-    })
-
-    setErrors(submitErrors)
-    return _.isEmpty(submitErrors)
-  }
-
-  const handleSubmitHandler = event => {
-    event.preventDefault()
-    if (validForSubmission()) {
-      fetch('/api/v1/items.json', {
-      credentials: "same-origin",
-      method: 'POST',
-      body: JSON.stringify(itemFields),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-         error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      if (body) {
-        // setRedirectNumber(body.item)
-      } else {
-        // setErrors(body.errors)
-        setItemFields(body)
-      }
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
-
-    setItemFields({
-      title: "",
-      description: "",
-      location: "",
-      photo: ""
-    })
-    }
-  }
-
-  // if (redirectNumber) {
-  //   return <Redirect to={`/items/${redirectNumber}`} />
-  // }
-
   return(
-    <div className="item-form">
-      <h2>Add a New Item</h2>
-      <form onSubmit={handleSubmitHandler}>
-        <ErrorList
-          errors={errors}
-        />
-        <label htmlFor="title">Title:
-          <input
-            type="text"
-            id="title"
-            value={itemFields.title}
-            onChange={handleInputChange}
-          />
-        </label>
+    <div className="modal fade" id="itemModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLongTitle">Add an Item</h5>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="container-fluid">
+              <form onSubmit={props.handleSubmit} className="mr-auto">
+                <ErrorList
+                  errors={props.errors}
+                />
+                <label htmlFor="title">Title:
+                  <input
+                    type="text"
+                    id="title"
+                    value={props.itemFields.title}
+                    onChange={props.handleInputChange}
+                  />
+                </label>
 
-        <label htmlFor="description">Description:
-          <input
-            type="text"
-            id="description"
-            value={itemFields.description}
-            onChange={handleInputChange}
-          />
-        </label>
+                <label htmlFor="description">Description:
+                  <input
+                    type="text"
+                    id="description"
+                    value={props.itemFields.description}
+                    onChange={props.handleInputChange}
+                  />
+                </label>
 
-        <label htmlFor="location">Location:
-          <input
-            type="text"
-            id="location"
-            value={itemFields.location}
-            onChange={handleInputChange}
-          />
-        </label>
+                <label htmlFor="location">City and State:
+                  <input
+                    type="text"
+                    id="location"
+                    value={props.itemFields.location}
+                    onChange={props.handleInputChange}
+                  />
+                </label>
 
-        <label htmlFor="photo">Photo:
-          <input
-            type="text"
-            id="photo"
-            value={itemFields.photo}
-            onChange={handleInputChange}
-          />
-        </label>
+                <label htmlFor="photo">Photo:
+                  <input
+                    type="text"
+                    id="photo"
+                    value={props.itemFields.photo}
+                    onChange={props.handleInputChange}
+                  />
+                </label>
 
-        <input className="input-button" type="submit" value="Add Item" />
-      </form>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#itemModal">Add Item</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   )
 }
 

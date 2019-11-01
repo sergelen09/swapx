@@ -4,7 +4,6 @@ import ItemsIndexContainer from "./items/ItemsIndexContainer"
 import ItemForm from "./items/ItemForm"
 import ItemShowContainer from "./items/ItemShowContainer"
 
-
 export const App = (props) => {
   return (
     <BrowserRouter>

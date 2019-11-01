@@ -13,7 +13,7 @@ const ItemShowPage = props => {
   }
 
   return(
-    <div>
+    <div className="item-show-wrap">
       <div className="col-md-4 offset-md-2 item-show">
         <h2 className="item-title-show">Item:</h2>
         <div className="item-index">
