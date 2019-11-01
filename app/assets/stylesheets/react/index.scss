@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 
 .navbar {
+  position: fixed;
+  width: 100%;
   z-index: 2;
-  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
   &.stayActive {
     opacity: 1;
   }
   &:hover {
-    opacity: 1;
+    background: rgba(255, 255, 255, 1);
   }
 }
 
 #app {
-  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -42,6 +43,7 @@
   }
 }
 
+
 .card-title {
   text-align: center;
   font-weight: bold;
@@ -59,6 +61,7 @@
   font-family: 'Permanent Marker', cursive;
   padding-left: 1rem;
   font-size: 4rem;
+  // opacity: 1;
 }
 
 .jumbotron {
@@ -77,6 +80,9 @@
 
 .mr-auto {
   margin: auto;
+}
+
+.index-btn {
 }
 
 // .navbar {

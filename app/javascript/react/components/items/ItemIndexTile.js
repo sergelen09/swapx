@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ItemIndexTile = props => {
   return (
@@ -12,9 +13,9 @@ const ItemIndexTile = props => {
           <p className="card-text">
             {props.description}
           </p>
-          <a href="/" className="btn btn-primary">
-            Exchange
-          </a>
+          <Link className="btn btn-primary" to={`/items/${props.id}`}>
+            View Details
+          </Link>
         </div>
       </div>
     </div>
