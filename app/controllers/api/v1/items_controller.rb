@@ -1,6 +1,6 @@
 class Api::V1::ItemsController < ApiController
   def index
-    items = Item.all
+    items = Item.items_pending
 
     render json: {
       items: items
