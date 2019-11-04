@@ -7,12 +7,25 @@ import ItemForm from './ItemForm'
 const ItemsIndexContainer = props => {
   const [items, setItems] = useState([])
   const [errors, setErrors] = useState({})
+  const [photoUpload, setPhotoUpload] = useState([])
+  const [message, setMessage] = useState("")
   const [itemFields, setItemFields] = useState({
     title: "",
     description: "",
-    location: "",
-    photo: ""
+    location: ""
   })
+
+  const closeModal = () => {
+    document.getElementById("close").click()
+  }
+
+  const onDrop = (file) => {
+    if(file.length == 1) {
+      setPhotoUpload(file)
+    } else {
+      setMessage("You can only upload 1 photo")
+    }
+  }
 
   const handleInputChange = event => {
     setItemFields({
@@ -24,10 +37,10 @@ const ItemsIndexContainer = props => {
   const validForSubmission = () => {
     let submitErrors = {}
 
-    const requiredFields = ["title", "description"]
+    const requiredFields = ["title", "description", "location", "photo"]
 
     requiredFields.forEach(field => {
-      if(itemFields[field].trim() === "") {
+      if(itemFields[field] === "") {
         submitErrors = {
           ...submitErrors,
           [field]: "can't be blank"
@@ -42,14 +55,18 @@ const ItemsIndexContainer = props => {
   const handleSubmit = event => {
     event.preventDefault()
     if (validForSubmission()) {
+      let submittedFields = new FormData()
+      submittedFields.append("title", itemFields.title)
+      submittedFields.append("description", itemFields.description)
+      submittedFields.append("location", itemFields.location)
+      submittedFields.append("photo", photoUpload[0])
+
+      closeModal()
+      
       fetch('/api/v1/items.json', {
       credentials: "same-origin",
       method: 'POST',
-      body: JSON.stringify(itemFields),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
+      body: submittedFields
     })
     .then(response => {
       if (response.ok) {
@@ -62,10 +79,8 @@ const ItemsIndexContainer = props => {
     })
     .then(response => response.json())
     .then(body => {
-      if (body) {
+      if (body.item.id) {
         setItems([...items, body.item])
-      } else {
-        setItemFields(body)
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -97,7 +112,6 @@ const ItemsIndexContainer = props => {
     .then(response => response.json())
     .then(body => {
       setItems(body.items)
-
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -108,7 +122,7 @@ const ItemsIndexContainer = props => {
         id={item.id}
         key={item.id}
         title={item.title}
-        description={item.description}
+        photo={item.photo}
       />
   )
   })
@@ -121,13 +135,15 @@ const ItemsIndexContainer = props => {
           handleSubmit={handleSubmit}
           itemFields={itemFields}
           errors={errors}
+          onDrop={onDrop}
+          photoUpload={photoUpload}
         />
       </div>
       <div>
         <WelcomeTile />
       </div>
-      <div className="container-fluid padding item-tile">
-        <div className="row justify-content-center">
+      <div className="container item-tile">
+        <div className="row">
           {itemTiles}
         </div>
       </div>

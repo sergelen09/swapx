@@ -9,12 +9,23 @@ import ItemIndexTile from "./items/ItemIndexTile"
 describe("ItemTile", () => {
   let wrapper
 
+  let item = {
+    id: 1,
+    title: "Monopoly",
+    description: "A great board game for all",
+    photo: {
+      url: "www.awesome.com"
+    }
+  }
+
   beforeEach(() => {
     wrapper = mount(
       <BrowserRouter>
         <ItemIndexTile
-          title="Monopoly"
-          description="A great board game for all"
+          id={item.id}
+          title={item.title}
+          description={item.description}
+          photo={item.photo}
         />
       </BrowserRouter>
     )

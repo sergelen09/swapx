@@ -4,12 +4,12 @@ const ItemShowPage = props => {
   let itemOnePic
   let itemTwoPic
 
-  if (props.photo) {
-    itemOnePic = <img src="{props.photo}" className="card-img"/>
+  if (props.itemUrl) {
+    itemOnePic = <img src={props.itemUrl} className="card-img"/>
   }
 
-  if (props.trade.photo) {
-    itemTwoPic = <img src="{props.trade.photo}" className="card-img"/>
+  if (props.tradeUrl) {
+    itemTwoPic = <img src={props.tradeUrl} className="card-img"/>
   }
 
   return(
@@ -22,6 +22,7 @@ const ItemShowPage = props => {
             <h4 className="card-title">
               {props.title}
             </h4>
+            <p>{props.description}</p>
             <p>
               {props.location}
             </p>
@@ -36,6 +37,7 @@ const ItemShowPage = props => {
             <h4 className="card-title">
               {props.trade.title}
             </h4>
+            <p>{props.trade.description}</p>
             <p className="card-text">
               {props.trade.location}
             </p>
