@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
-  validates :photo, presence: true
   validates :location, presence: true
 
   mount_uploader :photo, PhotoUploader

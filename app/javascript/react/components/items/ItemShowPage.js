@@ -11,7 +11,7 @@ const ItemShowPage = props => {
   if (props.tradeUrl) {
     itemTwoPic = <img src={props.tradeUrl} className="card-img"/>
   }
-  
+
   return(
     <div className="item-show-wrap">
       <div className="col-md-4 offset-md-2 item-show">
@@ -22,6 +22,7 @@ const ItemShowPage = props => {
             <h4 className="card-title">
               {props.title}
             </h4>
+            <p>{props.description}</p>
             <p>
               {props.location}
             </p>
@@ -36,6 +37,7 @@ const ItemShowPage = props => {
             <h4 className="card-title">
               {props.trade.title}
             </h4>
+            <p>{props.trade.description}</p>
             <p className="card-text">
               {props.trade.location}
             </p>

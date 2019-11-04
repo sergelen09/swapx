@@ -14,7 +14,9 @@ user2 = User.create(
   email: "john@test.com", password: "abc123", password_confirmation: "abc123", location: "Chelsea, MA", username: "john"
 )
 
-item1 = Item.create(title: "Monopoly", description: "A great board game for all", location: "Boston, MA", photo: "pic", user: User.first)
+item1 = Item.create(title: "Playstation 4!!", description: "Brand new only 5 months old! Will deliver to you.", location: "Marlborough, MA", photo: {
+"url": "https://swapxbucket.s3.amazonaws.com/uploads/item/photo/40/ps4.jpg"
+}, user: User.first)
 item2 = Item.create(title: "Yugioh", description: "All the cards", location: "Weymouth, MA", photo: "pic", user: User.second)
 item3 = Item.create(title: "Lord of the Rings", description: "All the book", location: "Cambridge, MA", photo: "pic", user: User.third)
 item4 = Item.create(title: "Pokemon Cards", description: "All the card", location: "Amesbury, MA", photo: "pic", user: User.fourth)
