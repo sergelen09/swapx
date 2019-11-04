@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { Redirect } from "react-router-dom"
 import _ from "lodash"
 import ErrorList from "../ErrorList"
+import Dropzone from 'react-dropzone'
 
 const ItemForm = props => {
+  const onDrop = props.onDrop
+
   return(
     <div className="modal fade" id="itemModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered" role="document">
@@ -11,12 +13,12 @@ const ItemForm = props => {
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">Add an Item</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span id="close" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div className="modal-body">
             <div className="container-fluid">
-              <form onSubmit={props.handleSubmit} className="mr-auto">
+              <form onSubmit={props.handleSubmit} className="item-form">
                 <ErrorList
                   errors={props.errors}
                 />
@@ -30,7 +32,7 @@ const ItemForm = props => {
                 </label>
 
                 <label htmlFor="description">Description:
-                  <input
+                  <textarea
                     type="text"
                     id="description"
                     value={props.itemFields.description}
@@ -47,18 +49,33 @@ const ItemForm = props => {
                   />
                 </label>
 
-                <label htmlFor="photo">Photo:
-                  <input
-                    type="text"
-                    id="photo"
-                    value={props.itemFields.photo}
-                    onChange={props.handleInputChange}
-                  />
-                </label>
+                <section>
+                  <div className="dropzone">
+                    <Dropzone
+                      className=""
+                      multiple={false}
+                      onDrop={file => onDrop(file)}
+                    >
+                      {({getRootProps, getInputProps}) => (
+                          <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <p>Click to upload photo / Drop your photo here</p>
+                          </div>
+                      )}
+                    </Dropzone>
+                  </div>
+                  <aside>
+                    <ul>
+                      {
+                        props.photoUpload.map(file => <li key={file.name}>{file.name} - {file.size} bytes</li>)
+                      }
+                    </ul>
+                  </aside>
+                </section>
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#itemModal">Add Item</button>
+                  <button type="submit" className="btn btn-primary">Add Item</button>
                 </div>
               </form>
             </div>

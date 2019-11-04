@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
+  validates :photo, presence: true
+  validates :location, presence: true
+
+  mount_uploader :photo, PhotoUploader
 
   has_one :offered_for_bid, class_name: "Offer",
   foreign_key: 'offered_item_id'

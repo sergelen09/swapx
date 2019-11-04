@@ -45,12 +45,12 @@
 
 
 .card-title {
-  text-align: center;
+  // text-align: center;
   font-weight: bold;
 }
 
 .card-text {
-  text-align: center;
+  // text-align: center;
 }
 
 .bg-image {
@@ -83,6 +83,19 @@
 }
 
 .index-btn {
+}
+
+.item-index {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  height: 200px;
+}
+
+.card {
+  border: solid black 3px;
 }
 
 // .navbar {

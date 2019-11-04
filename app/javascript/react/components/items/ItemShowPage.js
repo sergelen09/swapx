@@ -4,14 +4,14 @@ const ItemShowPage = props => {
   let itemOnePic
   let itemTwoPic
 
-  if (props.photo) {
-    itemOnePic = <img src="{props.photo}" className="card-img"/>
+  if (props.itemUrl) {
+    itemOnePic = <img src={props.itemUrl} className="card-img"/>
   }
 
-  if (props.trade.photo) {
-    itemTwoPic = <img src="{props.trade.photo}" className="card-img"/>
+  if (props.tradeUrl) {
+    itemTwoPic = <img src={props.tradeUrl} className="card-img"/>
   }
-
+  
   return(
     <div className="item-show-wrap">
       <div className="col-md-4 offset-md-2 item-show">
