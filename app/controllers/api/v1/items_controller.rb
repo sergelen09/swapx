@@ -1,7 +1,6 @@
 class Api::V1::ItemsController < ApiController
   def index
     items = Item.items_pending
-
     render json: {
       items: items
     }
@@ -9,7 +8,7 @@ class Api::V1::ItemsController < ApiController
 
   def show
     item = Item.find(params[:id])
-    render json: item, serializer: ItemSerializer, scope: {current_user: current_user}
+    render json: item, serializer: ItemSerializer, scope: {current_user: current_user, logged_in: user_signed_in?}
   end
 
   def create

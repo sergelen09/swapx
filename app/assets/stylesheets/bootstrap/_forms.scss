@@ -85,6 +85,7 @@ select.form-control {
   margin-bottom: 0; // Override the `<label>/<legend>` default
   @include font-size(inherit); // Override the `<legend>` default
   line-height: $input-line-height;
+  font-weight: 700;
 }
 
 .col-form-label-lg {

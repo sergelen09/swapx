@@ -18,41 +18,54 @@ const ItemForm = props => {
           </div>
           <div className="modal-body">
             <div className="container-fluid">
-              <form onSubmit={props.handleSubmit} className="item-form">
+              <form onSubmit={props.handleSubmit} className="">
                 <ErrorList
                   errors={props.errors}
                 />
-                <label htmlFor="title">Title:
+              <div className="form-group">
+                <label className="col-form-label" htmlFor="title">Title:
                   <input
+                    placeholder="An interesting title"
+                    className="form-control"
                     type="text"
                     id="title"
                     value={props.itemFields.title}
                     onChange={props.handleInputChange}
                   />
                 </label>
+              </div>
 
-                <label htmlFor="description">Description:
+              <div className="form-group">
+                <label className="col-form-label" htmlFor="description">Description:
                   <textarea
+                    placeholder="Description"
+                    className="form-control"
                     type="text"
                     id="description"
                     value={props.itemFields.description}
                     onChange={props.handleInputChange}
                   />
                 </label>
+              </div>
 
-                <label htmlFor="location">City and State:
+              <div className="form-group">
+                <label className="col-form-label" htmlFor="location">Location:
                   <input
+                    placeholder="street, city, state, zip"
+                    className="form-control"
                     type="text"
                     id="location"
                     value={props.itemFields.location}
                     onChange={props.handleInputChange}
                   />
                 </label>
+              </div>
 
-                <section>
+              <div className="form-group">
+                <section className="col-form-label">
                   <div className="dropzone">
                     <Dropzone
-                      className=""
+                      className="form-control"
                       multiple={false}
                       onDrop={file => onDrop(file)}
                     >
@@ -72,6 +85,7 @@ const ItemForm = props => {
                     </ul>
                   </aside>
                 </section>
+              </div>
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

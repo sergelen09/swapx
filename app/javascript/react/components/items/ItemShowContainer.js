@@ -41,6 +41,19 @@ const ItemShowContainer = props => {
 
   return(
     <div>
+      <section className="breadcrumb-area text-center">
+          <div className="container">
+              <div className="row">
+                  <div className="col-md-12">
+                      <h1>Swap</h1>
+                      <ul className="list-unstyled list-inline">
+                          <li className="list-inline-item"><a href="/">Home</a></li>
+                          <li className="list-inline-item"><i className="fa fa-long-arrow-right"></i>Swap</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </section>
       <ItemShowPage
         id={item.id}
         title={item.title}

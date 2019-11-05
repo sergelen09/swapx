@@ -1,102 +1,103 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 
-.navbar {
-  position: fixed;
-  width: 100%;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-  &.stayActive {
-    opacity: 1;
-  }
-  &:hover {
-    background: rgba(255, 255, 255, 1);
-  }
-}
 
-#app {
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  .page-container {
-    height: 100%;
-    overflow: scroll;
-    .jumbotron {
-      .content {
-        padding-top: 100px;
-        h1 {
-          padding: 0px;
-          margin: 0px;
-          color: #fff;
-          font-family: 'Permanent Marker', cursive;
-        }
-        .sign-up-btn {
-          font-family: 'Permanent Marker', cursive;
-          font-size: 2rem;
-          border-radius: 2px;
-          padding: 10px 50px;
-        }
-      }
-    }
-  }
-}
-
-
-.card-title {
-  // text-align: center;
-  font-weight: bold;
-}
-
-.card-text {
-  // text-align: center;
-}
-
-.bg-image {
-  background-image: url("https://i.gyazo.com/f135dd529f4fd5dd256b49295faba2b6.jpg");
-}
-
-.logo-text {
-  font-family: 'Permanent Marker', cursive;
-  padding-left: 1rem;
-  font-size: 4rem;
-  // opacity: 1;
-}
-
-.jumbotron {
-  background-image: url("https://i.gyazo.com/15a970ec597a21f224623dd9a22c567e.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  min-height: 575px;
-  font-weight: bold;
-}
-
-.sign-btns {
-  font-family: #FFFFFF;
-  font-weight: bold;
-  margin: 10px;
-}
-
-.mr-auto {
-  margin: auto;
-}
-
-.index-btn {
-}
-
-.item-index {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.card-img-top {
-  height: 200px;
-}
-
-.card {
-  border: solid black 3px;
-}
+// .navbar {
+//   position: fixed;
+//   width: 100%;
+//   z-index: 2;
+//   background: rgba(255, 255, 255, 0.5);
+//   transition: all 0.3s ease;
+//   &.stayActive {
+//     opacity: 1;
+//   }
+//   &:hover {
+//     background: rgba(255, 255, 255, 1);
+//   }
+// }
+//
+// #app {
+//   top: 0px;
+//   left: 0px;
+//   width: 100%;
+//   height: 100%;
+//   overflow: auto;
+//   .page-container {
+//     height: 100%;
+//     overflow: scroll;
+//     .jumbotron {
+//       .content {
+//         padding-top: 100px;
+//         h1 {
+//           padding: 0px;
+//           margin: 0px;
+//           color: #fff;
+//           font-family: 'Permanent Marker', cursive;
+//         }
+//         .sign-up-btn {
+//           font-family: 'Permanent Marker', cursive;
+//           font-size: 2rem;
+//           border-radius: 2px;
+//           padding: 10px 50px;
+//         }
+//       }
+//     }
+//   }
+// }
+//
+//
+// .card-title {
+//   // text-align: center;
+//   font-weight: bold;
+// }
+//
+// .card-text {
+//   // text-align: center;
+// }
+//
+// .bg-image {
+//   background-image: url("https://i.gyazo.com/f135dd529f4fd5dd256b49295faba2b6.jpg");
+// }
+//
+// .logo-text {
+//   font-family: 'Permanent Marker', cursive;
+//   padding-left: 1rem;
+//   font-size: 4rem;
+//   // opacity: 1;
+// }
+//
+// .jumbotron {
+//   background-image: url("https://i.gyazo.com/15a970ec597a21f224623dd9a22c567e.jpg");
+//   background-size: 100%;
+//   background-repeat: no-repeat;
+//   min-height: 575px;
+//   font-weight: bold;
+// }
+//
+// .sign-btns {
+//   font-family: #FFFFFF;
+//   font-weight: bold;
+//   margin: 10px;
+// }
+//
+// .mr-auto {
+//   margin: auto;
+// }
+//
+// .index-btn {
+// }
+//
+// .item-index {
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+// }
+//
+// .card-img-top {
+//   height: 200px;
+// }
+//
+// .card {
+//   border: solid black 3px;
+// }
 
 // .navbar {
 //   background-image: url("https://i.gyazo.com/59d2b5e602e5597e2e5c011025c6e522.png");

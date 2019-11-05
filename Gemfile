@@ -52,10 +52,10 @@ gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
-gem 'foundation-rails', '~> 6.5'
 gem 'webpacker', '~> 3.3'
 gem 'active_model_serializers'
 gem "carrierwave"
 gem 'fog-aws'
+gem "font-awesome-rails"
 
 gem "geocoder", "~> 1.5"

@@ -62,7 +62,7 @@ const ItemsIndexContainer = props => {
       submittedFields.append("photo", photoUpload[0])
 
       closeModal()
-      
+
       fetch('/api/v1/items.json', {
       credentials: "same-origin",
       method: 'POST',
@@ -88,9 +88,9 @@ const ItemsIndexContainer = props => {
     setItemFields({
       title: "",
       description: "",
-      location: "",
-      photo: ""
+      location: ""
     })
+    setPhotoUpload([])
     }
   }
 
@@ -123,12 +123,13 @@ const ItemsIndexContainer = props => {
         key={item.id}
         title={item.title}
         photo={item.photo}
+        location={item.location}
       />
   )
   })
 
   return (
-    <div className="page-container">
+    <div className="">
       <div className="item-form">
         <ItemForm
           handleInputChange={handleInputChange}
@@ -142,12 +143,35 @@ const ItemsIndexContainer = props => {
       <div>
         <WelcomeTile />
       </div>
-      <div className="container item-tile">
-        <div className="row">
-          {itemTiles}
-        </div>
-      </div>
-    </div>
+      <section className="gallery-box">
+          <div className="container">
+              <div className="row">
+                  <div className="col-md-12">
+                      <div className="gallery-top text-center">
+                          <h2>Find The Perfect Item</h2>
+                      </div>
+                  </div>
+              </div>
+              <div className="row">
+                  <div className="col-md-12">
+                      <ul className="gallery-filter list-unstyled list-inline text-center">
+                          <li className="list-inline-item active">Newest</li>
+                          <li className="list-inline-item">Board Games</li>
+                          <li className="list-inline-item">Collectibles</li>
+                          <li className="list-inline-item">Games</li>
+                      </ul>
+                  </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="gallery-items row">
+                    {itemTiles}
+                  </div>
+                </div>
+              </div>
+          </div>
+      </section>
+  </div>
   )
 }
 
