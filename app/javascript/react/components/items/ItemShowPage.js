@@ -13,7 +13,7 @@ const ItemShowPage = props => {
     itemTwoPic = <img src={props.tradeUrl} className="card-img"/>
     offerInfo = "Item Offer Info"
   }
-
+  debugger
   return(
     <section className="product-details">
       <div className="container">

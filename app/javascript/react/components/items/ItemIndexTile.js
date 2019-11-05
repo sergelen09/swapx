@@ -7,7 +7,13 @@ const ItemIndexTile = props => {
           <div className="gallery-content">
               <div className="gallery-image">
                   <div className="image-box">
-                      <a href={`/items/${props.id}`}><img src={props.photo.url} alt="" className="img-fluid"/></a>
+                      <a href={`/items/${props.id}`}>
+                        <div className="index-page-image">
+                          <div className="image-div">
+                            <img src={props.photo.url} className="img-fluid"/>
+                          </div>
+                        </div>
+                      </a>
                   </div>
                   <div className="hover-box text-center">
                       <ul className="list-unstyled list-inline">
