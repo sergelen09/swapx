@@ -1,3 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :location, :username
+  attributes :id, :location, :username, :logged_in
+
+  def logged_in
+    true
+  end
 end
