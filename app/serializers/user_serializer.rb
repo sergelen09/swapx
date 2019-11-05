@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   def logged_in
     true
   end
+  has_many :comments
 end
