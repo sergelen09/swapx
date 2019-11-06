@@ -1,21 +1,17 @@
-// .item-title-show {
-//   margin-top: 5px;
-// }
-//
-// .item-show-wrap {
-//   position: relative;
-// }
-//
-// .card-img {
-//   width: 100%;
-//   height: 25vh;
-//   object-fit: cover;
-// }
-//
-// .item-show {
-//   padding-top: 93px;
-// }
-//
-// .card-body ul {
-//   list-style: none;
-// }
+.details-img-box {
+  .image-div {
+    height: 40rem;
+    text-align: center;
+    img {
+      height: inherit;
+    }
+  }
+}
+
+.comment-box2 {
+  text-align: right;
+}
+
+.comment-margin {
+  margin-right: 18.75rem;
+}

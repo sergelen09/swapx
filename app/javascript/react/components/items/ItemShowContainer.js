@@ -4,10 +4,20 @@ import ItemShowPage from './ItemShowPage'
 const ItemShowContainer = props => {
   const [item, setItem] = useState({})
   const [trade, setTrade] = useState({})
-  const [itemUrl, setItemUrl] = useState("")
-  const [tradeUrl, setTradeUrl] = useState("")
+  const [offer, setOffer] = useState(null)
+  const [comments, setComments] = useState([])
+  const [commentFields, setCommentFields] = useState({
+    body: ""
+  })
 
   let itemId = props.match.params.id
+
+  const handleInputChange = event => {
+    setCommentFields({
+      ...commentFields,
+      [event.currentTarget.id]: event.currentTarget.value
+    })
+  }
 
   useEffect(() => {
     fetch(`/api/v1/items/${itemId}`)
@@ -23,21 +33,56 @@ const ItemShowContainer = props => {
     .then(response => response.json())
     .then(body => {
       setItem(body.item)
-      setItemUrl(body.item.photo.url)
       if (body.item.traded_item_info) {
       setTrade(body.item.traded_item_info)
-      setTradeUrl(body.item.traded_item_info.photo.url)
+      setComments(body.item.comments)
+      setOffer(body.item.offer.id)
     } else {
       setTrade({
-        title: "No Offer Yet",
+        title: "",
         description: "",
         location: ""
       })
-      setTradeUrl(null)
     }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
+  const addComment = event => {
+    event.preventDefault()
+    handleSubmit({...commentFields, offer})
+    setCommentFields({
+      body: ""
+    })
+  }
+
+  const handleSubmit = (commentFields) => {
+    event.preventDefault()
+    fetch(`/api/v1/comments`, {
+      credentials: "same-origin",
+      method: 'POST',
+      body: JSON.stringify(commentFields),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+         error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      debugger
+      setComments([...comments, body])
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
 
   return(
     <div>
@@ -55,13 +100,16 @@ const ItemShowContainer = props => {
           </div>
       </section>
       <ItemShowPage
+        key={item.id}
         id={item.id}
-        title={item.title}
-        description={item.description}
-        location={item.location}
-        itemUrl={itemUrl}
+        item={item}
         trade={trade}
-        tradeUrl={tradeUrl}
+        addComment={addComment}
+        handleInputChange={handleInputChange}
+        commentFields={commentFields}
+        comments={comments}
+        user={item.current_user}
+        tradeUser={item.trade_user}
       />
     </div>
   )
