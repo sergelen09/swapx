@@ -45,4 +45,7 @@ class Item < ApplicationRecord
     return item_array
   end
 
+  def available
+    offered_for_trade.nil? && offered_for_bid.nil?
+  end
 end

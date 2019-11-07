@@ -3198,6 +3198,9 @@ footer {
             margin-bottom: 20px;
             font-weight: 300;
         }
+        p.offer-pending {
+          font-weight: bold;
+        }
         span {
             font-size: 66px;
             color: $dark2;
@@ -3223,6 +3226,17 @@ footer {
             option {
                 color: $text2;
             }
+        }
+        button {
+          font-size: 16px;
+          color: #fff;
+          background: $green;
+          padding: 13px 35px;
+          @include border-radius(2px);
+          font-weight: 600;
+          &:hover {
+              background: $dark_green;
+          }
         }
         a {
             font-size: 16px;
