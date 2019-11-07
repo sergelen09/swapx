@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentForm from '../comments/CommentForm'
 import CommentTile from '../comments/CommentTile'
+import OfferForm from '../offers/OfferForm'
 
 const ItemShowPage = props => {
   let itemOnePic
@@ -8,6 +9,7 @@ const ItemShowPage = props => {
   let offerInfo = "No Offer Yet"
   let messageHead = "No Messages Yet"
   let tabToggle = ""
+  let offerArea
 
   if (props.comments.length !== 0) {
     messageHead = "Messages"
@@ -21,6 +23,10 @@ const ItemShowPage = props => {
     itemTwoPic = <img src={props.trade.photo.url} className="img-fluid"/>
     offerInfo = "Item Offered"
     tabToggle = "tab"
+    offerArea = <div className="product-price text-center"><p className="offer-pending">Offer Pending</p></div>
+    messageHead = "Messages"
+  } else {
+    offerArea = <OfferForm redirectFunc={props.redirectFunc} item={props.item}/>
   }
 
   const commentsTile = props.comments.map(comment => {
@@ -93,13 +99,7 @@ const ItemShowPage = props => {
               <div className="col-lg-4 col-md-5">
                   <div className="row">
                       <div className="col-md-12">
-                          <div className="product-price text-center">
-                              <p>Offer an Item</p>
-                              <select className="form-control custom-select">
-                                  <option>first item</option>
-                              </select>
-                              <a href="" className="buy-btn">Submit Offer</a>
-                          </div>
+                        {offerArea}
                       </div>
                       <div className="col-md-12">
                           <div className="item-saler">

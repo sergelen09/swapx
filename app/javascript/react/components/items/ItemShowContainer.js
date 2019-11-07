@@ -19,6 +19,10 @@ const ItemShowContainer = props => {
     })
   }
 
+  const redirectFunc = (item) => {
+    setTrade(item)
+  }
+
   useEffect(() => {
     fetch(`/api/v1/items/${itemId}`)
     .then(response => {
@@ -34,10 +38,10 @@ const ItemShowContainer = props => {
     .then(body => {
       setItem(body.item)
       if (body.item.traded_item_info) {
-      setTrade(body.item.traded_item_info)
-      setComments(body.item.comments)
-      setOffer(body.item.offer.id)
-    } else {
+        setTrade(body.item.traded_item_info)
+        setComments(body.item.comments)
+        setOffer(body.item.offer.id)
+      } else {
       setTrade({
         title: "",
         description: "",
@@ -57,7 +61,6 @@ const ItemShowContainer = props => {
   }
 
   const handleSubmit = (commentFields) => {
-    event.preventDefault()
     fetch(`/api/v1/comments`, {
       credentials: "same-origin",
       method: 'POST',
@@ -78,7 +81,6 @@ const ItemShowContainer = props => {
     })
     .then(response => response.json())
     .then(body => {
-      debugger
       setComments([...comments, body])
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -110,6 +112,7 @@ const ItemShowContainer = props => {
         comments={comments}
         user={item.current_user}
         tradeUser={item.trade_user}
+        redirectFunc={redirectFunc}
       />
     </div>
   )

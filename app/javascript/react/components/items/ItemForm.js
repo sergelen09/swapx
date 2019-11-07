@@ -97,7 +97,6 @@ const ItemForm = props => {
         </div>
       </div>
     </div>
-
   )
 }
 
