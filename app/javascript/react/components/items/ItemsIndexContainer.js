@@ -95,11 +95,11 @@ const ItemsIndexContainer = props => {
   }
 
   useEffect(() => {
-    let search = ""
-    if (props.location.search) {
-      search = props.location.search
-    }
-    fetch(`/api/v1/items${search}.json`)
+    // let search = ""
+    // if (props.location.search) {
+    //   search = props.location.search
+    // }
+    fetch(`/api/v1/items`)
     .then((response) => {
       if (response.ok) {
         return response
