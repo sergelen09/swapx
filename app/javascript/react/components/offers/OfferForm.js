@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 const OfferForm = props => {
   const [items, setItems] = useState([])
   const [selectedItem, setSelectedItem] = useState("")
-  const [errors, setErrors] = useState({})
   const [offeredItem, setOfferedItem] = useState({})
 
   let options = <option>No Items</option>

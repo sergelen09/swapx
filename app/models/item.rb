@@ -26,23 +26,20 @@ class Item < ApplicationRecord
     [location].compact.join(', ')
   end
 
-  def self.items_pending
-    items = Item.all
+  def self.items_pending(items)
     item_array = []
+
     items.each do |item|
-      if item.offered_for_bid != nil
-        if item.offered_for_bid.status == "rejected"
-          item_array.push(item)
-        end
-      elsif item.offered_for_trade != nil
-        if item.offered_for_trade.status == "rejected"
-          item_array.push(item)
-        end
-      else
+      if item.offered_for_bid == nil && item.offered_for_trade == nil
         item_array.push(item)
       end
     end
+    
     return item_array
+  end
+
+  def self.all_except(user)
+    where.not(user_id: user)
   end
 
   def available

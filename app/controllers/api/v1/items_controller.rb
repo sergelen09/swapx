@@ -1,9 +1,12 @@
 class Api::V1::ItemsController < ApiController
   def index
-    items = Item.items_pending
-    render json: {
-      items: items
-    }
+    if current_user
+      items = Item.all_except(current_user)
+      items = Item.items_pending(items)
+    else
+      items = Item.items_pending(Item.all)
+    end
+    render json: items, each_serializer: ItemSerializer, scope: {current_user: current_user, logged_in: user_signed_in?}
   end
 
   def show

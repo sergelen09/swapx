@@ -81,7 +81,11 @@ const ItemShowContainer = props => {
     })
     .then(response => response.json())
     .then(body => {
-      setComments([...comments, body])
+      if (comments) {
+        setComments([...comments, body])
+      } else {
+        setComments(body)
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
