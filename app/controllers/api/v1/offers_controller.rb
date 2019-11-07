@@ -15,7 +15,7 @@ class Api::V1::OffersController < ApiController
     offer = Offer.new(status: "pending")
     offer.offered_item = itemOffered
     offer.traded_item = itemTraded
-    binding.pry
+    
     offer.save
 
     render json: itemTraded
