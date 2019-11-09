@@ -19,8 +19,9 @@ const ItemShowContainer = props => {
     })
   }
 
-  const redirectFunc = (item) => {
-    setTrade(item)
+  const redirectFunc = (newItem, offer) => {
+    setTrade(newItem)
+    setOffer(offer)
   }
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const ItemShowContainer = props => {
       if (comments) {
         setComments([...comments, body])
       } else {
-        setComments(body)
+        setComments([body])
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))

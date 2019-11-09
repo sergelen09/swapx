@@ -6,7 +6,12 @@ class Api::V1::ItemsController < ApiController
     else
       items = Item.items_pending(Item.all)
     end
-    render json: items, each_serializer: ItemSerializer, scope: {current_user: current_user, logged_in: user_signed_in?}
+
+    if items.empty?
+      render json: { items: [] }
+    else
+      render json: items, each_serializer: ItemSerializer, scope: {current_user: current_user, logged_in: user_signed_in?}
+    end
   end
 
   def show

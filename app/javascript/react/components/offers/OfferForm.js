@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 const OfferForm = props => {
   const [items, setItems] = useState([])
   const [selectedItem, setSelectedItem] = useState("")
-  const [offeredItem, setOfferedItem] = useState({})
+  const [offeredItem, setOfferedItem] = useState("")
 
   let options = <option>No Items</option>
 
@@ -33,7 +33,7 @@ const OfferForm = props => {
     .then(body => {
       if (body.items) {
         setItems(body.items)
-        setOfferedItem(props.item)
+        setOfferedItem(props.item.id)
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -41,15 +41,17 @@ const OfferForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    createOffer({...selectedItem, offeredItem})
-
+    createOffer({
+      selectedItem: selectedItem,
+      offeredItem: offeredItem
+    })
   }
 
-  const createOffer = (selectedItem) => {
-    fetch(`/api/v1/offers.json`, {
+  const createOffer = (payload) => {
+    fetch(`/api/v1/offers`, {
       credentials: "same-origin",
       method: 'POST',
-      body: JSON.stringify(selectedItem),
+      body: JSON.stringify(payload),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -66,7 +68,7 @@ const OfferForm = props => {
     })
     .then(response => response.json())
     .then(body => {
-      props.redirectFunc(body.item)
+      props.redirectFunc(body.item, body.offer.id)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }

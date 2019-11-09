@@ -15,6 +15,8 @@ const ItemsIndexContainer = props => {
     location: ""
   })
 
+  let itemTiles = <div><h4>No Items</h4></div>
+
   const closeModal = () => {
     document.getElementById("close").click()
   }
@@ -95,10 +97,6 @@ const ItemsIndexContainer = props => {
   }
 
   useEffect(() => {
-    // let search = ""
-    // if (props.location.search) {
-    //   search = props.location.search
-    // }
     fetch(`/api/v1/items`)
     .then((response) => {
       if (response.ok) {
@@ -116,17 +114,20 @@ const ItemsIndexContainer = props => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  const itemTiles = items.map(item => {
-    return(
-      <ItemIndexTile
-        id={item.id}
-        key={item.id}
-        title={item.title}
-        photo={item.photo}
-        location={item.location}
-      />
-  )
-  })
+  if (items.length > 0) {
+    itemTiles = items.map(item => {
+      return(
+        <ItemIndexTile
+          id={item.id}
+          key={item.id}
+          title={item.title}
+          photo={item.photo}
+          location={item.location}
+          user={item.logged_in}
+          />
+      )
+    })
+  }
 
   return (
     <div className="">
