@@ -20,7 +20,7 @@
                       <h2><a href="/">SwapX</a></h2>
                   </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-4">
                   <div class="logo-menu text-right">
                       <ul class="list-unstyled list-inline">
                           <li class="list-inline-item"><a href=""></a></li>
@@ -29,32 +29,43 @@
                       </ul>
                   </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                   <div class="cart-box text-right">
                       <div class="shopping-cart text-left">
                           <div class="cart-btn">
-                              <a href="">
-                                <i class="fa fa-random fa-2x"></i>
-                                <span>2</span>
+                              <a>
+                                <i class="fa fa-random fa-2x cart-icon"></i>
+                                <% item_count = 0 %>
+                                <% @items.each do |item| %>
+                                  <% if item.offered_item != nil %>
+                                    <% item_count += 1 %>
+                                  <% end %>
+                                <% end %>
+                                <span class="cart-span"> <%= item_count %> </span>
                               </a>
                           </div>
                           <div class="cart-body">
+                            <% if current_user %>
+                              <% @items.each do |item| %>
                               <div class="cart-content d-flex flex-row justify-content-between">
-                                  <div class="cart-img">
-                                      <a href=""><img src="" alt="" class="img-fluid"></a>
-                                  </div>
+                                      <% if item.offered_item != nil %>
+                                        <div class="cart-img">
+                                          <a href="/items/<%= item.offered_item.id %>"><img src=<%= item.offered_item.photo.url %> class="img-fluid"></a>
+                                        </div>
+                                        <div class="cart-disc">
+                                        <h6><a href="/items/<%= item.offered_item.id %>"><%= item.offered_item.title %></a></h6>
+                                        <h5>Status: <%= item.offered_for_trade.status %> </h5>
+                                        </div>
+                                      <% end %>
+                              </div>
+                              <% end %>
+                            <% else %>
+                              <div class="cart-content d-flex flex-row justify-content-between">
                                   <div class="cart-disc">
-                                      <h6><a href="">Woocommerce Template</a></h6>
+                                      <h6><a href="">No Items</a></h6>
                                   </div>
                               </div>
-                              <div class="cart-content d-flex flex-row justify-content-between">
-                                  <div class="cart-img">
-                                      <a href=""><img src="" alt="" class="img-fluid"></a>
-                                  </div>
-                                  <div class="cart-disc">
-                                      <h6><a href="">Woocommerce Template</a></h6>
-                                  </div>
-                              </div>
+                            <% end %>
                           </div>
                       </div>
                       <%- if current_user -%>
@@ -73,51 +84,21 @@
             <div class="col-lg-9 col-md-12">
                 <div class="main-menu">
                     <ul class="list-unstyled list-inline">
-                        <li class="list-inline-item"><a href="">Categories<i class="fa fa-angle-down"></i></a>
+                        <li class="list-inline-item"><a href="">My Items<i class="fa fa-angle-down"></i></a>
                             <ul class="list-unstyled pri-dropdown">
-                                <li><a href="">Free Templates</a></li>
-                                <li><a href="">Premium Templates</a></li>
-                                <li><a href="">New Templates</a></li>
-                                <li><a href="">On Sale Templaes</a></li>
+                                <% if current_user %>
+                                  <% if @items.empty? %>
+                                    <li><a>No Items</a></li>
+                                  <% end %>
+                                  <% @items.each do |item| %>
+                                    <li><a href="/items/<%= item.id %>"><%= item.title %></a></li>
+                                  <% end %>
+                                <% else %>
+                                  <li><a>No Items</a></li>
+                                <% end %>
                             </ul>
                         </li>
                         <li class="list-inline-item"><a href=""></a></li>
-                        <li class="list-inline-item"><a href=""></a></li>
-                        <li class="list-inline-item"><a href=""></a></li>
-                        <li class="list-inline-item"><a href=""></a></li>
-                        <li class="list-inline-item dropdown-block"><a href="">More<i class="fa fa-angle-down"></i></a>
-                            <ul class="list-unstyled mega-menu">
-                                <li>
-                                    <a href="01-home-one.html">Home One</a>
-                                    <a href="02-home-two.html">Home Two</a>
-                                    <a href="03-about-us.html">About Us</a>
-                                    <a href="04-product-grid-one.html">Product Grid One</a>
-                                    <a href="05-product-grid-two.html">Product Grid Two</a>
-                                </li>
-                                <li>
-                                    <a href="06-product-grid-three.html">Product Grid Three</a>
-                                    <a href="07-product-details.html">Product Details</a>
-                                    <a href="08-profile.html">Profile</a>
-                                    <a href="09-log-in.html">Log In</a>
-                                    <a href="10-sign-up.html">Sign Up</a>
-
-                                </li>
-                                <li>
-                                    <a href="11-upload-product.html">Upload Product</a>
-                                    <a href="12-404.html">404</a>
-                                    <a href="13-faq.html">Faq</a>
-                                    <a href="14-coming-soon.html">Coming Soon</a>
-                                    <a href="15-contact.html">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="16-cart.html">Cart</a>
-                                    <a href="17-checkout.html">Checkout</a>
-                                    <a href="18-blog-full.html">Blog Full</a>
-                                    <a href="19-blog-sidebar.html">Blog Sidebar</a>
-                                    <a href="20-blog-details.html">Blog Details</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>
