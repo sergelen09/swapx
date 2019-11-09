@@ -25,7 +25,7 @@ const ItemIndexTile = props => {
                   </div>
                   <div className="hover-box text-center">
                       <ul className="list-unstyled list-inline">
-                          <li className="list-inline-item"><a href={`${redirect}`}><img src="assets/preview.png" alt="" className="img-fluid"/></a></li>
+                          <li className="list-inline-item"><a href={`${redirect}`}><img src="" alt="" className="img-fluid"/></a></li>
                       </ul>
                   </div>
               </div>
