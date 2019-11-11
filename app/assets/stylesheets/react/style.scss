@@ -2589,7 +2589,7 @@ footer {
                 color: $text2;
             }
         }
-        button {
+        button.buy-btn {
           font-size: 16px;
           color: #fff;
           background: $green;
@@ -2598,6 +2598,17 @@ footer {
           font-weight: 600;
           &:hover {
               background: $dark_green;
+          }
+        }
+        button.reject-btn {
+          font-size: 16px;
+          color: #fff;
+          background: $red;
+          padding: 13px 35px;
+          @include border-radius(2px);
+          font-weight: 600;
+          &:hover {
+              background: #8b0000;
           }
         }
         a {
