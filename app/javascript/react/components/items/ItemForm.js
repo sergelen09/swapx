@@ -62,6 +62,22 @@ const ItemForm = props => {
               </div>
 
               <div className="form-group">
+                <label className="col-form-label" htmlFor="category">Category:
+                  <select
+                    className="form-control"
+                    id="category"
+                    value={props.itemFields.category}
+                    onChange={props.handleInputChange}
+                  >
+                    <option>Choose One</option>
+                    <option>board games</option>
+                    <option>collectibles</option>
+                    <option>video games</option>
+                  </select>
+                </label>
+              </div>
+
+              <div className="form-group">
                 <section className="col-form-label">
                   <div className="dropzone">
                     <Dropzone

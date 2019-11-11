@@ -1,5 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :user, :title, :description, :location, :photo, :current_user, :traded_item_info, :logged_in, :comments, :trade_user, :offer
+  attributes :id, :user, :title, :description, :location, :category, :photo, :current_user, :traded_item_info, :logged_in, :comments, :trade_user, :offer
 
   belongs_to :user
 

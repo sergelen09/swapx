@@ -9,13 +9,101 @@ const ItemsIndexContainer = props => {
   const [errors, setErrors] = useState({})
   const [photoUpload, setPhotoUpload] = useState([])
   const [message, setMessage] = useState("")
+  const [active, setActive] = useState({
+    newActive: "active",
+    boardActive: "",
+    collectActive: "",
+    videoActive: "",
+  })
   const [itemFields, setItemFields] = useState({
     title: "",
     description: "",
-    location: ""
+    location: "",
+    category: ""
   })
 
   let itemTiles = <div><h4>No Items</h4></div>
+
+  const newClick = event => {
+    event.preventDefault()
+    setActive({
+      newActive: "active",
+      boardActive: "",
+      collectActive: "",
+      videoActive: ""
+    })
+
+    indexFilter({
+      click: event.currentTarget.id
+    })
+  }
+
+  const boardClick = event => {
+    event.preventDefault()
+    setActive({
+      newActive: "",
+      boardActive: "active",
+      collectActive: "",
+      videoActive: ""
+    })
+
+    indexFilter({
+      click: event.currentTarget.id
+    })
+  }
+
+  const collectClick = event => {
+    event.preventDefault()
+    setActive({
+      newActive: "",
+      boardActive: "",
+      collectActive: "active",
+      videoActive: ""
+    })
+
+    indexFilter({
+      click: event.currentTarget.id
+    })
+  }
+
+  const videoClick = event => {
+    event.preventDefault()
+    setActive({
+      newActive: "",
+      boardActive: "",
+      collectActive: "",
+      videoActive: "active"
+    })
+    indexFilter({
+      click: event.currentTarget.id
+    })
+  }
+
+  const indexFilter = (payload) => {
+    fetch(`/api/v1/items`, {
+      credentials: "same-origin",
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+         error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      setItems(body.items)
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
 
   const closeModal = () => {
     document.getElementById("close").click()
@@ -61,6 +149,7 @@ const ItemsIndexContainer = props => {
       submittedFields.append("title", itemFields.title)
       submittedFields.append("description", itemFields.description)
       submittedFields.append("location", itemFields.location)
+      submittedFields.append("category", itemFields.category)
       submittedFields.append("photo", photoUpload[0])
 
       closeModal()
@@ -97,7 +186,11 @@ const ItemsIndexContainer = props => {
   }
 
   useEffect(() => {
-    fetch(`/api/v1/items`)
+    let search = ""
+    if (props.location.search) {
+      search = props.location.search
+    }
+    fetch(`/api/v1/items${search}.json`)
     .then((response) => {
       if (response.ok) {
         return response
@@ -123,6 +216,7 @@ const ItemsIndexContainer = props => {
           title={item.title}
           photo={item.photo}
           location={item.location}
+          category={item.category}
           user={item.logged_in}
           />
       )
@@ -156,10 +250,18 @@ const ItemsIndexContainer = props => {
               <div className="row">
                   <div className="col-md-12">
                       <ul className="gallery-filter list-unstyled list-inline text-center">
-                          <li className="list-inline-item active">Newest</li>
-                          <li className="list-inline-item">Board Games</li>
-                          <li className="list-inline-item">Collectibles</li>
-                          <li className="list-inline-item">Games</li>
+                          <li className={`list-inline-item ${active.newActive}`} id="newest" onClick={newClick}>
+                            Newest
+                          </li>
+                          <li className={`list-inline-item ${active.boardActive}`} id="board games" onClick={boardClick}>
+                            Board Games
+                          </li>
+                          <li className={`list-inline-item ${active.collectActive}`} id="collectibles" onClick={collectClick}>
+                            Collectibles
+                          </li>
+                          <li className={`list-inline-item ${active.videoActive}`} id="video games" onClick={videoClick}>
+                            Video Games
+                          </li>
                       </ul>
                   </div>
               </div>

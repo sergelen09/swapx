@@ -34,12 +34,32 @@ class Item < ApplicationRecord
         item_array.push(item)
       end
     end
-    
+
+    return item_array
+  end
+
+  def self.no_user_items(items)
+    item_array = []
+    user = user
+
+    if user != nil
+      user = user
+      items.each do |item|
+        if item.user_id != user.id
+          item_array.push(item)
+        end
+      end
+    else
+      items.each do |item|
+        item_array.push(item)
+      end
+    end
+
     return item_array
   end
 
   def self.all_except(user)
-    where.not(user_id: user)
+    where.not(user_id: user).reverse
   end
 
   def available
