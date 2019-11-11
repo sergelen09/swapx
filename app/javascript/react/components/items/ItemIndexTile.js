@@ -25,7 +25,12 @@ const ItemIndexTile = props => {
                   </div>
                   <div className="hover-box text-center">
                       <ul className="list-unstyled list-inline">
-                          <li className="list-inline-item"><a href={`${redirect}`}><img src="" alt="" className="img-fluid"/></a></li>
+                          <li className="list-inline-item">
+                            <a href={`${redirect}`}>
+                              <i className="fa fa-info-circle fa-5x item-icon">
+                              </i>
+                            </a>
+                          </li>
                       </ul>
                   </div>
               </div>
@@ -33,6 +38,7 @@ const ItemIndexTile = props => {
                   <div className="box-item-heading">
                       <h4><a href={redirect}>{props.title}</a></h4>
                       <p>Location: {props.location}</p>
+                      <p>Category: {props.category}</p>
                   </div>
               </div>
           </div>

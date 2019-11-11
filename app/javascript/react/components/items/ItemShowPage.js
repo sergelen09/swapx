@@ -81,7 +81,9 @@ const ItemShowPage = props => {
                       </ul>
                       <div className="tab-content">
                           <div className="tab-pane fade show active" id="item-details" role="tabpanel">
-                              <p>{props.item.description}</p>
+                            <p>Location: {props.item.location}</p>
+                            <p>Category: {props.item.category}</p>
+                            <p>{props.item.description}</p>
                           </div>
                           <div className="tab-pane fade" id="comment" role="tabpanel">
                               {commentsTile}
@@ -110,6 +112,7 @@ const ItemShowPage = props => {
                                   </div>
                                   <div className="saler-info">
                                       <p>Location: {props.trade.location}</p>
+                                      <p>Category: {props.trade.category}</p>
                                       <p>Details: {props.trade.description}</p>
                                   </div>
                               </div>

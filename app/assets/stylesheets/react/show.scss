@@ -15,3 +15,10 @@
 .comment-margin {
   margin-right: 18.75rem;
 }
+
+.item-icon {
+  color: $green;
+  &:hover {
+    color: $dark_green;
+  }
+}

@@ -34,15 +34,15 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
 
       expect(returned_json["items"].length).to eq 2
 
-      expect(returned_json["items"][0]["title"]).to eq "Monopoly"
-      expect(returned_json["items"][0]["description"]).to eq "A great board game for all"
-      expect(returned_json["items"][0]["location"]).to eq "Boston, MA"
-      expect(returned_json["items"][0]["photo"][0]).to eq nil
-
-      expect(returned_json["items"][1]["title"]).to eq "Yugioh"
-      expect(returned_json["items"][1]["description"]).to eq "All the cards"
+      expect(returned_json["items"][1]["title"]).to eq "Monopoly"
+      expect(returned_json["items"][1]["description"]).to eq "A great board game for all"
       expect(returned_json["items"][1]["location"]).to eq "Boston, MA"
       expect(returned_json["items"][1]["photo"][0]).to eq nil
+
+      expect(returned_json["items"][0]["title"]).to eq "Yugioh"
+      expect(returned_json["items"][0]["description"]).to eq "All the cards"
+      expect(returned_json["items"][0]["location"]).to eq "Boston, MA"
+      expect(returned_json["items"][0]["photo"][0]).to eq nil
     end
   end
 

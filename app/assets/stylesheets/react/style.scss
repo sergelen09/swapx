@@ -1837,7 +1837,7 @@ footer {
             padding: 5px 0;
             font-weight: 600;
             cursor: pointer;
-            @include transition(0.2s ease);
+            @include transition(0.5s ease);
             position: relative;
             &:hover {
                 color: $green;
