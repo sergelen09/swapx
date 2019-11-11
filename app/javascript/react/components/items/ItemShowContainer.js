@@ -5,12 +5,20 @@ const ItemShowContainer = props => {
   const [item, setItem] = useState({})
   const [trade, setTrade] = useState({})
   const [offer, setOffer] = useState(null)
+  const [user, setUser] = useState({})
+  const [itemUser, setItemUser] = useState("")
+  const [currentUser, setCurrentUser] = useState("")
   const [comments, setComments] = useState([])
   const [commentFields, setCommentFields] = useState({
     body: ""
   })
 
   let itemId = props.match.params.id
+  let usernameTitle
+
+  if (item.user) {
+    usernameTitle = item.user.username
+  }
 
   const handleInputChange = event => {
     setCommentFields({
@@ -22,6 +30,14 @@ const ItemShowContainer = props => {
   const redirectFunc = (newItem, offer) => {
     setTrade(newItem)
     setOffer(offer)
+  }
+
+  const refreshFunc = (item) => {
+    setItem(item)
+  }
+
+  const acceptedFunc = (status) => {
+    setOffer(status)
   }
 
   useEffect(() => {
@@ -38,10 +54,13 @@ const ItemShowContainer = props => {
     .then(response => response.json())
     .then(body => {
       setItem(body.item)
+      setItemUser(body.item.user.id)
+      setCurrentUser(body.item.current_user.id)
+      setUser(body.item.user)
       if (body.item.traded_item_info) {
         setTrade(body.item.traded_item_info)
         setComments(body.item.comments)
-        setOffer(body.item.offer.id)
+        setOffer(body.item.offer.status)
       } else {
       setTrade({
         title: "",
@@ -97,7 +116,7 @@ const ItemShowContainer = props => {
           <div className="container">
               <div className="row">
                   <div className="col-md-12">
-                      <h1>Swap</h1>
+                      <h1>{`${usernameTitle}\'s item`}</h1>
                       <ul className="list-unstyled list-inline">
                           <li className="list-inline-item"><a href="/">Home</a></li>
                           <li className="list-inline-item"><i className="fa fa-long-arrow-right"></i>Swap</li>
@@ -115,9 +134,14 @@ const ItemShowContainer = props => {
         handleInputChange={handleInputChange}
         commentFields={commentFields}
         comments={comments}
-        user={item.current_user}
+        itemUser={itemUser}
+        user={user}
+        currentUser={currentUser}
         tradeUser={item.trade_user}
         redirectFunc={redirectFunc}
+        refreshFunc={refreshFunc}
+        acceptedFunc={acceptedFunc}
+        offer={offer}
       />
     </div>
   )

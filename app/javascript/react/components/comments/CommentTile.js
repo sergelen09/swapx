@@ -5,7 +5,7 @@ const CommentTile = props => {
     <div className={`comment-box ${props.commentClass}`}>
         <div className="comment-content">
             <ul className="list-unstyled list-inline">
-                <li className="list-inline-item"><a href="">{props.username}</a></li>
+                <li className="list-inline-item"><a>{props.username}</a></li>
             </ul>
             <p>{props.comment}</p>
         </div>

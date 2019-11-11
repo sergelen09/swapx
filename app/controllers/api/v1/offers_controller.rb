@@ -24,4 +24,21 @@ class Api::V1::OffersController < ApiController
       offer: offer
     }
   end
+
+  def update
+    offer = Offer.find(params["offer"])
+    offer.status = "accepted"
+    offer.save
+
+    render json: {
+      offer: offer.status
+    }
+  end
+
+  def destroy
+    Offer.find(params["offer"]).delete
+    item = Item.find(params["item"]["id"])
+
+    render json: item, serializer: ItemSerializer, scope: {current_user: current_user, logged_in: user_signed_in?}
+  end
 end

@@ -2,6 +2,7 @@ import React from 'react'
 import CommentForm from '../comments/CommentForm'
 import CommentTile from '../comments/CommentTile'
 import OfferForm from '../offers/OfferForm'
+import OfferPendingForm from '../offers/OfferPendingForm'
 
 const ItemShowPage = props => {
   let itemOnePic
@@ -23,8 +24,22 @@ const ItemShowPage = props => {
     itemTwoPic = <img src={props.trade.photo.url} className="img-fluid"/>
     offerInfo = "Item Offered"
     tabToggle = "tab"
-    offerArea = <div className="product-price text-center"><p className="offer-pending">Offer Pending</p></div>
     messageHead = "Messages"
+    if (props.offer != "pending") {
+      offerArea = <div className="product-price text-center"><p className="offer-pending">Offer Accepted!</p></div>
+    } else {
+      if (props.itemUser === props.currentUser) {
+        offerArea = <OfferPendingForm
+                      acceptedFunc={props.acceptedFunc}
+                      refreshFunc={props.refreshFunc}
+                      item={props.item}
+                    />
+      } else {
+        offerArea = <div className="product-price text-center"><p className="offer-pending">Offer Pending</p></div>
+      }
+    }
+  } else if (props.itemUser === props.currentUser) {
+    offerArea = <div className="product-price text-center"><p className="offer-pending">Awaiting Offer</p></div>
   } else {
     offerArea = <OfferForm redirectFunc={props.redirectFunc} item={props.item}/>
   }
@@ -33,13 +48,13 @@ const ItemShowPage = props => {
     let commentClass = ""
     let username = ""
 
-    if (props.user.id === comment.user_id) {
+    if (props.currentUser === comment.user_id) {
       commentClass = "comment-box2"
       username = props.user.username
-    } else if (props.user.id !== comment.user_id && comment.user_id === props.tradeUser.id) {
+    } else if (props.currentUser !== comment.user_id && comment.user_id === props.tradeUser.id) {
       commentClass = "comment-margin"
       username = props.tradeUser.username
-    } else if (props.user.id !== comment.user_id && props.user.id === props.item.user.id) {
+    } else if (props.currentUser !== comment.user_id && props.currentUser === props.item.user.id) {
       commentClass = "comment-box2"
       username = props.user.username
     } else {
