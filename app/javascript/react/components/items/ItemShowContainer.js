@@ -5,6 +5,7 @@ const ItemShowContainer = props => {
   const [item, setItem] = useState({})
   const [trade, setTrade] = useState({})
   const [offer, setOffer] = useState(null)
+  const [offerId, setOfferId] = useState(null)
   const [user, setUser] = useState({})
   const [itemUser, setItemUser] = useState("")
   const [currentUser, setCurrentUser] = useState("")
@@ -61,6 +62,7 @@ const ItemShowContainer = props => {
         setTrade(body.item.traded_item_info)
         setComments(body.item.comments)
         setOffer(body.item.offer.status)
+        setOfferId(body.item.offer.id)
       } else {
       setTrade({
         title: "",
@@ -74,13 +76,13 @@ const ItemShowContainer = props => {
 
   const addComment = event => {
     event.preventDefault()
-    handleSubmit({...commentFields, offer})
+    handleComment({...commentFields, offerId})
     setCommentFields({
       body: ""
     })
   }
 
-  const handleSubmit = (commentFields) => {
+  const handleComment = (commentFields) => {
     fetch(`/api/v1/comments`, {
       credentials: "same-origin",
       method: 'POST',

@@ -48,18 +48,18 @@ const ItemShowPage = props => {
     let commentClass = ""
     let username = ""
 
-    if (props.currentUser === comment.user_id) {
+    if (props.currentUser === comment.user_id && props.currentUser === props.tradeUser.id) {
+      commentClass = "comment-box2"
+      username = props.tradeUser.username
+    } else if (props.currentUser === comment.user_id && props.currentUser === props.item.user.id) {
       commentClass = "comment-box2"
       username = props.user.username
     } else if (props.currentUser !== comment.user_id && comment.user_id === props.tradeUser.id) {
       commentClass = "comment-margin"
       username = props.tradeUser.username
-    } else if (props.currentUser !== comment.user_id && props.currentUser === props.item.user.id) {
-      commentClass = "comment-box2"
-      username = props.user.username
-    } else {
+    } else if (props.currentUser !== comment.user_id && comment.user_id === props.item.user.id) {
       commentClass = "comment-margin"
-      username = props.tradeUser.username
+      username = props.user.username
     }
 
     return(
