@@ -7,6 +7,7 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
     location: "Boston, MA",
     username: "john"
   ) }
+
   let!(:item1) { Item.create(
     title: "Monopoly",
     description: "A great board game for all",
@@ -14,6 +15,7 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
     photo: "pic",
     user: user1
   ) }
+
   let!(:item2) { Item.create(
     title: "Yugioh",
     description: "All the cards",
