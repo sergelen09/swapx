@@ -5,6 +5,10 @@
 ## Heroku Link
 https://swapx.herokuapp.com/
 
+use test account
+Username - swap@test.com
+Password - abc123
+
 ## Technologies
 
 * Ruby - 2.6.5
@@ -28,10 +32,6 @@ A item exchanging app where users can exchange board games, video games, books, 
 * 'yarn run start' and 'rails s'
 * Navigate your browser to localhost:3000
 * Run test suite with `yarn test` and `rspec`
-
-* use test account
-* Username - swap@test.com
-* Password - abc123
 
 ## Author
 
