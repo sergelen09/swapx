@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router'
 
 const OfferPendingForm = props => {
   const [offeredItem, setOfferedItem] = useState("")
+  const [redirect, setRedirect] = useState(null)
 
   useEffect(() => {
     fetch(`/api/v1/items/${props.item.id}`,
@@ -69,7 +71,6 @@ const OfferPendingForm = props => {
     })
   }
 
-
   const handleReject = (payload) => {
     fetch(`/api/v1/offers/${offeredItem}`, {
       credentials: "same-origin",
@@ -91,9 +92,13 @@ const OfferPendingForm = props => {
     })
     .then(response => response.json())
     .then(body => {
-      props.refreshFunc(body.item)
+      setRedirect(body.item.id)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  if (redirect) {
+    return <Redirect to="/" />
   }
 
   return(

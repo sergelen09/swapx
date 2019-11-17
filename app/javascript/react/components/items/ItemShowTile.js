@@ -31,7 +31,6 @@ const ItemShowTile = props => {
       if (props.itemUser === props.currentUser) {
         offerArea = <OfferPendingForm
                       acceptedFunc={props.acceptedFunc}
-                      refreshFunc={props.refreshFunc}
                       item={props.item}
                     />
       } else {
