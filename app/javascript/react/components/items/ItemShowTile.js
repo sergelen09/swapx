@@ -4,7 +4,7 @@ import CommentTile from '../comments/CommentTile'
 import OfferForm from '../offers/OfferForm'
 import OfferPendingForm from '../offers/OfferPendingForm'
 
-const ItemShowPage = props => {
+const ItemShowTile = props => {
   let itemOnePic
   let itemTwoPic
   let offerInfo = "No Offer Yet"
@@ -96,9 +96,9 @@ const ItemShowPage = props => {
                       </ul>
                       <div className="tab-content">
                           <div className="tab-pane fade show active" id="item-details" role="tabpanel">
-                            <p>Location: {props.item.location}</p>
-                            <p>Category: {props.item.category}</p>
-                            <p>{props.item.description}</p>
+                            <p id="location">Location: {props.item.location}</p>
+                            <p id="category">Category: {props.item.category}</p>
+                            <p id="description">{props.item.description}</p>
                           </div>
                           <div className="tab-pane fade" id="comment" role="tabpanel">
                               {commentsTile}
@@ -126,9 +126,10 @@ const ItemShowPage = props => {
                                     {itemTwoPic}
                                   </div>
                                   <div className="saler-info">
-                                      <p>Location: {props.trade.location}</p>
-                                      <p>Category: {props.trade.category}</p>
-                                      <p>Details: {props.trade.description}</p>
+                                      <h4>{props.trade.title}</h4>
+                                      <p id="tradeLocation">Location: {props.trade.location}</p>
+                                      <p id="tradeCategory">Category: {props.trade.category}</p>
+                                      <p id="tradeDescription">Details: {props.trade.description}</p>
                                   </div>
                               </div>
                           </div>
@@ -141,4 +142,4 @@ const ItemShowPage = props => {
   )
 }
 
-export default ItemShowPage
+export default ItemShowTile

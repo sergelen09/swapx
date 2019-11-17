@@ -37,8 +37,8 @@ const ItemIndexTile = props => {
               <div className="box-item d-flex flex-row justify-content-between">
                   <div className="box-item-heading">
                       <h4><a href={redirect}>{props.title}</a></h4>
-                      <p>Location: {props.location}</p>
-                      <p>Category: {props.category}</p>
+                      <p id="location">Location: {props.location}</p>
+                      <p id="category">Category: {props.category}</p>
                   </div>
               </div>
           </div>

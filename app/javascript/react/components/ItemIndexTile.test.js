@@ -12,9 +12,10 @@ describe("ItemTile", () => {
   let item = {
     id: 1,
     title: "Monopoly",
-    description: "A great board game for all",
+    location: "Boston, MA",
+    category: "board games",
     photo: {
-      url: "www.awesome.com"
+      url: "www.photo.com"
     }
   }
 
@@ -24,7 +25,8 @@ describe("ItemTile", () => {
         <ItemIndexTile
           id={item.id}
           title={item.title}
-          description={item.description}
+          location={item.location}
+          category={item.category}
           photo={item.photo}
         />
       </BrowserRouter>
@@ -33,5 +35,17 @@ describe("ItemTile", () => {
 
   it("renders an h4 tag with the item title", () => {
     expect(wrapper.find("h4").text()).toBe("Monopoly")
+  })
+
+  it("renders the location", () => {
+    expect(wrapper.find("#location").text()).toBe("Location: Boston, MA")
+  })
+
+  it("renders the category", () => {
+    expect(wrapper.find("#category").text()).toBe("Category: board games")
+  })
+
+  it("renders the img tag with the photo url", () => {
+    expect(wrapper.find("img").prop("src")).toEqual("www.photo.com")
   })
 })
