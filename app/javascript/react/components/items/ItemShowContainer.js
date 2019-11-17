@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ItemShowPage from './ItemShowPage'
+import ItemShowTile from './ItemShowTile'
 
 const ItemShowContainer = props => {
   const [item, setItem] = useState({})
@@ -127,7 +127,7 @@ const ItemShowContainer = props => {
               </div>
           </div>
       </section>
-      <ItemShowPage
+      <ItemShowTile
         key={item.id}
         id={item.id}
         item={item}
